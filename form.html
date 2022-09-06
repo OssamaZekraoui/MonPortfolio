@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <meta charset="utf-8">
+        <style>
+            form{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                margin: auto;
+            }
+            form input, form textarea, form button{
+                padding: 20px;
+                margin-bottom: 20px;
+                outline: none;
+                border:none;
+                background-color: #ddd;
+            }
+            form button{
+                background-color: #333;
+                cursor: pointer;
+                color: #fff;
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Contact Us...</h1>
+        <form class="contact_form" action="#">
+            <input class="name" type="text" placeholder="name" />
+            <input class="email" type="text" placeholder="email" />
+            <textarea class="msg" cols="5" rows="5" placeholder="Your message..." ></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <script src="https://smtpjs.com/v3/smtp.js">
+        </script>
+        <script>
+            
+            const form = document.querySelector('.contact_form'),
+
+            // function to send the message when click on button send 
+            function sendMsg(e){
+                e.preventDefault();
+                // les constantes
+                  const name = document.querySelector('.name'),
+                   email = document.querySelector('.email'),
+                   msg = document.querySelector('.msg');
+
+            // function send Email...
+            Email.send({
+                SecureToken : "c732eccc-aabb-468a-9d74-6781a852e35b",
+                To : 'oussmix01@gmail',
+                From : email.value,
+                Subject : "Contact Form",
+                Body : msg.value
+                }).then(
+                message => alert(message)
+                );
+            }
+
+            // add the event listener submit 
+            form.addEventListener('submut', sendMsg);
+
+
+        </script>
+    </body>
+</html>
